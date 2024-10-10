@@ -1,5 +1,3 @@
-import { TwilioMediaContentType } from '../constant/twilio.constant';
-
 export enum MessageType {
     TEXT = 'text',
     INTERACTIVE = 'interactive',
@@ -13,11 +11,9 @@ export type ResponseMessage = {
 };
 
 export type IncomingMessage = {
-  profileName: string;
-  from: string;
-  to: string;
-  body: string;
-  messageType: MessageType;
-  mediaContentType0?: TwilioMediaContentType;
-  mediaUrl0?: string;
+  ProfileName: string;
+  From: string;
+  To: string;
+  Body: string;
+  MessageType: MessageType;
 };
