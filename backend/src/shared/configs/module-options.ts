@@ -21,5 +21,8 @@ export const configModuleOptions: ConfigModuleOptions = {
     JWT_ACCESS_TOKEN_EXP_IN_SEC: Joi.number().required(),
     JWT_REFRESH_TOKEN_EXP_IN_SEC: Joi.number().required(),
     DEFAULT_ADMIN_USER_PASSWORD: Joi.string().required(),
+    TWILIO_ACCOUNT_SID: Joi.string().required(),
+    TWILIO_AUTH_TOKEN: Joi.string().required(),
+    TWILIO_FROM_NUMBER: Joi.string().required(),
   }),
 };

@@ -27,4 +27,9 @@ export default (): any => ({
     ),
   },
   defaultAdminUserPassword: process.env.DEFAULT_ADMIN_USER_PASSWORD,
+  twilio: {
+    accountSid: process.env.TWILIO_ACCOUNT_SID,
+    authToken: process.env.TWILIO_AUTH_TOKEN,
+    fromNumber: process.env.TWILIO_FROM_NUMBER,
+  }
 });
