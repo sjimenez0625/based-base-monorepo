@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import OpenAI from 'openai';
+import { Run } from 'openai/resources/beta/threads/runs/runs';
 
 import { AppLogger } from '../../shared/logger/logger.service';
-import { OpenAIThead, OpenAIToolOutput } from '../types/openai.type';
-import { Run } from 'openai/resources/beta/threads/runs/runs';
 import { OpenAIFunctions } from '../constant/openai.constant';
+import { OpenAIThead, OpenAIToolOutput } from '../types/openai.type';
 
 
 @Injectable()
