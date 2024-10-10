@@ -1,3 +1,4 @@
+import { CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TwilioModule } from 'nestjs-twilio';
@@ -17,7 +18,8 @@ import { ChatService } from './services/chat.service';
         authToken: config.get('twilio.authToken'),
       }),
       inject: [ConfigService],
-    })
+    }),
+    CacheModule.register(),
   ],
   providers: [    
     JwtAuthStrategy,
