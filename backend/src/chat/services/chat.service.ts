@@ -6,6 +6,7 @@ import { AppLogger } from "src/shared/logger/logger.service";
 
 import { Session } from "../types/chat.type";
 import { IncomingMessage, ResponseMessage } from "../types/twilio.type";
+import { OpenAIService } from "./open-ai.service";
 
 const SESSION_TTL = 60000 * 120;
 
@@ -17,14 +18,21 @@ export class ChatService {
     private readonly logger: AppLogger,
     private readonly twilioService: TwilioService,
     private readonly configService: ConfigService,
+    private readonly openAIService: OpenAIService,
   ) {
     this.logger.setContext(ChatService.name);
     this.fromNumber = this.configService.get<string>('twilio.fromNumber') ?? '';
   }
 
   async processIncomingMessage(input: IncomingMessage) {    
-    const session = await this.getCacheSession(input.From);
-    this.sendMessage(session.number, 'Hello from the other side');
+    const { number, threadId } = await this.getCacheSession(input.From);
+
+    const result = await this.openAIService.processMessage(
+      threadId,
+      input.Body,
+    );
+
+    this.sendMessage(number, result);
   }
 
   async sendMessage(to: string, message: string): Promise<ResponseMessage> {
@@ -52,7 +60,8 @@ export class ChatService {
   async getCacheSession(number: string): Promise<Session> {
     let session = await this.cacheManager.get<Session>(number);
     if (!session) {
-      session = { number };
+      const { id } = await this.openAIService.createThread();
+      session = { number, threadId: id };
       await this.cacheManager.set(number, session, SESSION_TTL);
     }
 

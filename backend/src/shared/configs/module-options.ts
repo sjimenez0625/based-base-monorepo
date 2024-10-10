@@ -24,5 +24,7 @@ export const configModuleOptions: ConfigModuleOptions = {
     TWILIO_ACCOUNT_SID: Joi.string().required(),
     TWILIO_AUTH_TOKEN: Joi.string().required(),
     TWILIO_FROM_NUMBER: Joi.string().required(),
+    OPENAI_API_KEY: Joi.string().required(),
+    OPENAI_ASSISTANT_ID: Joi.string().required(),
   }),
 };

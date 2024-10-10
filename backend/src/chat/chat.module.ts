@@ -7,6 +7,7 @@ import { JwtAuthStrategy } from '../auth/strategies/jwt-auth.strategy';
 import { SharedModule } from '../shared/shared.module';
 import { ChatController } from './controllers/chat.controller';
 import { ChatService } from './services/chat.service';
+import { OpenAIService } from './services/open-ai.service';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ChatService } from './services/chat.service';
   providers: [    
     JwtAuthStrategy,
     ChatService,
+    OpenAIService,
   ],
   controllers: [ChatController],
   exports: [],

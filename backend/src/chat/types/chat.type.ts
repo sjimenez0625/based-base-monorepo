@@ -1,3 +1,4 @@
 export type Session = {
-    number: string
-  };
+  threadId: string;
+  number: string;
+};

@@ -31,5 +31,9 @@ export default (): any => ({
     accountSid: process.env.TWILIO_ACCOUNT_SID,
     authToken: process.env.TWILIO_AUTH_TOKEN,
     fromNumber: process.env.TWILIO_FROM_NUMBER,
+  },
+  openai: {
+    apiKey: process.env.OPENAI_API_KEY,
+    assistantId: process.env.OPENAI_ASSISTANT_ID,
   }
 });
