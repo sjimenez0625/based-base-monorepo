@@ -9,11 +9,3 @@ export type ResponseMessage = {
   to: string;
   body: string;
 };
-
-export type IncomingMessage = {
-  ProfileName: string;
-  From: string;
-  To: string;
-  Body: string;
-  MessageType: MessageType;
-};

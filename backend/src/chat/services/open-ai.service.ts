@@ -4,7 +4,7 @@ import OpenAI from 'openai';
 import { Run } from 'openai/resources/beta/threads/runs/runs';
 
 import { AppLogger } from '../../shared/logger/logger.service';
-import { OpenAIFunctions } from '../constant/openai.constant';
+import { OpenAIFunctions, OpenAIRoles } from '../constant/openai.constant';
 import { OpenAIThead, OpenAIToolOutput } from '../types/openai.type';
 
 
@@ -36,9 +36,9 @@ export class OpenAIService {
     return response;
   }
 
-  async addMessageToThread(threadId: string, message: string): Promise<void> {
+  async addMessageToThread(threadId: string, message: string, role = OpenAIRoles.USER): Promise<void> {
     await this.openIaClient.beta.threads.messages.create(threadId, {
-      role: 'user',
+      role,
       content: message,
     });
   }
@@ -86,7 +86,7 @@ export class OpenAIService {
     }
   }
 
-  async getMessagesFromThread(threadId: string): Promise<any> {
+  async getMessagesFromThread(threadId: string): Promise<string> {
     const messages =
       await this.openIaClient.beta.threads.messages.list(threadId);
 

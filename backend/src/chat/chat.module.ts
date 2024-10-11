@@ -2,6 +2,7 @@ import { CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TwilioModule } from 'nestjs-twilio';
+import { UserModule } from 'src/user/user.module';
 
 import { JwtAuthStrategy } from '../auth/strategies/jwt-auth.strategy';
 import { SharedModule } from '../shared/shared.module';
@@ -21,6 +22,7 @@ import { OpenAIService } from './services/open-ai.service';
       inject: [ConfigService],
     }),
     CacheModule.register(),
+    UserModule,
   ],
   providers: [    
     JwtAuthStrategy,

@@ -17,4 +17,11 @@ export class UserRepository extends Repository<User> {
 
     return user;
   }
+
+  async findByPhone(phone: string): Promise<User | null> {
+    return this.findOne({ 
+      relations: ['wallets'],
+      where: { phone } 
+    });
+  }
 }

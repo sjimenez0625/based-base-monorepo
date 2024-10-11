@@ -1,4 +1,7 @@
+import { User } from "src/user/entities/user.entity";
+
 export type Session = {
   threadId: string;
-  number: string;
+  phone: string;
+  user: User;
 };

@@ -2,30 +2,34 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-import { Wallet } from './wallet.entity';
+import { User } from './user.entity';
 
-
-@Entity('users')
-export class User {
+@Entity('wallets')
+export class Wallet {
   @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column()
-  name: string;
+  address: string;
 
   @Column()
-  phone: string;
+  token: string;
 
-  @Column({ default: false })
-  isAccountDisabled: boolean;
+  @Column()
+  chainId: string;
 
-  @OneToMany(() => Wallet, (wallet) => wallet.user, { cascade: true })
-  wallets: Wallet[];
+  @Column({ name: 'userId' })
+  userId: string;
+
+  @ManyToOne(() => User, (user) => user.id)
+  @JoinColumn({ name: 'userId' })
+  user: User;
 
   @CreateDateColumn({ name: 'createdAt', nullable: true })
   createdAt: Date;
